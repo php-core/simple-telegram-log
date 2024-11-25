@@ -15,7 +15,7 @@ class TGLog
 
     public function __construct(
         private readonly string $botToken,
-        private readonly int $chatId,
+        private readonly int|string $chatId,
         private ?bool $debug = null
     ) {
         $this->client = new Client($this->botToken);
