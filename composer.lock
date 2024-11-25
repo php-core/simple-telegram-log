@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "85b9921e37aaa70bd8e78217dad53dc3",
+    "packages": [
+        {
+            "name": "davtur19/turibot",
+            "version": "1.30",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davtur19/TuriBot.git",
+                "reference": "870e28e10f24d0c54c931c64a1be0b07bd602d1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davtur19/TuriBot/zipball/870e28e10f24d0c54c931c64a1be0b07bd602d1c",
+                "reference": "870e28e10f24d0c54c931c64a1be0b07bd602d1c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": "^8"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "TuriBot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "davtur19",
+                    "email": "davtur19@protonmail.com"
+                }
+            ],
+            "description": "A simple way to communicate with Telegram APIs in PHP.",
+            "support": {
+                "issues": "https://github.com/davtur19/TuriBot/issues",
+                "source": "https://github.com/davtur19/TuriBot/tree/1.30"
+            },
+            "time": "2024-10-06T12:40:54+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

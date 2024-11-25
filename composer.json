@@ -1,0 +1,20 @@
+{
+    "name": "php-core/simple-telegram-log",
+    "description": "A simple Telegram logging helper for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PHPCore\\SimpleTelegramLog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "php-core",
+            "email": "dev@php-core.com"
+        }
+    ],
+    "require": {
+        "davtur19/turibot": "1.x"
+    }
+}
