@@ -24,9 +24,6 @@ class TGLog
             : $debug;
     }
 
-    /**
-     * @throws Exception
-     */
     public static function init(
         ?string $botToken = null,
         ?int $chatId = null,
@@ -86,9 +83,6 @@ class TGLog
         );
     }
 
-    /**
-     * @throws Exception
-     */
     public static function logMessage(
         string $message,
         ?string $botToken = null,
@@ -98,9 +92,6 @@ class TGLog
             ->sendMessage($message);
     }
 
-    /**
-     * @throws Exception
-     */
     public static function debugLogMessage(
         string $message,
         ?string $botToken = null,
@@ -134,9 +125,6 @@ class TGLog
         }
     }
 
-    /**
-     * @throws Exception
-     */
     public static function logException(
         \Throwable $exception,
         bool $stacktrace = true,
@@ -147,9 +135,6 @@ class TGLog
         self::init($botToken, $chatId)->sendException($exception, $stacktrace, $requestData);
     }
 
-    /**
-     * @throws Exception
-     */
     public static function debugLogException(
         \Throwable $exception,
         bool $stacktrace = true,
@@ -171,9 +156,6 @@ class TGLog
     }
 
 
-    /**
-     * @throws Exception
-     */
     public static function logRequestDump(
         ?string $botToken = null,
         ?int $chatId = null,
@@ -182,9 +164,6 @@ class TGLog
         self::init($botToken, $chatId)->sendRequestDump();
     }
 
-    /**
-     * @throws Exception
-     */
     public static function debugLogRequestDump(
         ?string $botToken = null,
         ?int $chatId = null,
