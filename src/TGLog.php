@@ -20,7 +20,7 @@ class TGLog
     ) {
         $this->client = new Client($this->botToken);
         $this->debug = null === $debug ?
-            $_ENV['DEBUG'] ?? false
+            boolval($_ENV['DEBUG'] ?? false)
             : $debug;
     }
 
