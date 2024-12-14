@@ -4,21 +4,15 @@ declare(strict_types=1);
 
 namespace PHPCore\SimpleTelegramLog;
 
-use Exception;
-use TuriBot\Client;
-
 class TGLog
 {
     private static array $staticSelfs = [];
-
-    private Client $client;
 
     public function __construct(
         private readonly string $botToken,
         private readonly int|string $chatId,
         private ?bool $debug = null
     ) {
-        $this->client = new Client($this->botToken);
         $this->debug = null === $debug ?
             boolval($_ENV['DEBUG'] ?? false)
             : $debug;
@@ -75,13 +69,35 @@ class TGLog
         return ($this->isDebug() ? '[DEBUG' : '[PRODUCTION').' MODE]';
     }
 
+    private function sendFastRequest(string $url): void
+    {
+        $parts = parse_url($url);
+        $isSsl = $parts['scheme'] === 'https';
+        $fp = fsockopen(
+            ($isSsl ? 'ssl://' : '').$parts['host'],
+            $parts['port'] ?? ($isSsl ? 443 : 80),
+            $errorCode,
+            $errorMessage,
+            30
+        );
+        $out = 'GET '.$parts['path'].' HTTP/1.1'."\r\n";
+        $out .= 'Host: '.$parts['host']."\r\n";
+        $out .= 'Content-Length: 0'."\r\n";
+        $out .= 'Connection: Close'."\r\n\r\n";
+
+        fwrite($fp, $out);
+        fclose($fp);
+    }
+
     public function sendMessage(string $message): void
     {
-        $this->client->sendMessage(
-            $this->chatId,
-            '<i>'.$this->mode().'</i>'.PHP_EOL.$message,
-            null,
-            'HTML'
+        $this->sendFastRequest(
+            'https://api.telegram.org/bot'.$this->botToken.'/sendMessage?'
+            .http_build_query([
+                'chat_id'    => $this->chatId,
+                'text'       => '<i>'.$this->mode().'</i>'.PHP_EOL.$message,
+                'parse_mode' => 'HTML',
+            ])
         );
     }
 
