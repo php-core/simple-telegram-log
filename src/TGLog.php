@@ -88,7 +88,7 @@ class TGLog
 
     private function sendFastRequest(string $url): void
     {
-        if (empty($this->httpExecFunction)) {
+        if (empty($execFunction = $this->getHttpExecFunction())) {
             $parts = parse_url($url);
             $isSsl = $parts['scheme'] === 'https';
             $fp = fsockopen(
@@ -108,7 +108,7 @@ class TGLog
             fgets($fp, 2);
             fclose($fp);
         } else {
-            exec($this->httpExecFunction.' "'.$url.'" > /dev/null 2>&1 &');
+            exec($execFunction.' "'.$url.'" > /dev/null 2>&1 &');
         }
     }
 

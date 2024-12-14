@@ -11,5 +11,5 @@ TGLog::init(
     -14943993494, // tg chat id
     false, // debug mode
     TGLog::API_BASE_URL, // custom Bot API server url
-    'exec nohup setsid curl' // the cli program to use for the HTTP request
+    'nohup curl' // the cli program to use for the HTTP request
 )->sendMessage('Test message');
