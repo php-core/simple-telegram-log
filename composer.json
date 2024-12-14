@@ -14,5 +14,7 @@
             "email": "dev@php-core.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }

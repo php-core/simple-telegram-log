@@ -80,7 +80,9 @@ class TGLog
             $errorMessage,
             30
         );
-        $out = 'GET '.$parts['path'].' HTTP/1.1'."\r\n";
+        $out = 'GET '.$parts['path']
+            .(empty($parts['query']) ? '' : '?'.$parts['query'])
+            .' HTTP/1.1'."\r\n";
         $out .= 'Host: '.$parts['host']."\r\n";
         $out .= 'Content-Length: 0'."\r\n";
         $out .= 'Connection: Close'."\r\n\r\n";
@@ -91,14 +93,18 @@ class TGLog
 
     public function sendMessage(string $message): void
     {
-        $this->sendFastRequest(
-            'https://api.telegram.org/bot'.$this->botToken.'/sendMessage?'
-            .http_build_query([
-                'chat_id'    => $this->chatId,
-                'text'       => '<i>'.$this->mode().'</i>'.PHP_EOL.$message,
-                'parse_mode' => 'HTML',
-            ])
-        );
+        $maxMessageLength = 4096;
+        $fullMessage = '<i>'.$this->mode().'</i>'.PHP_EOL.$message;
+        foreach (str_split($fullMessage, $maxMessageLength) as $messagePart) {
+            $this->sendFastRequest(
+                'https://api.telegram.org/bot'.$this->botToken.'/sendMessage?'
+                .http_build_query([
+                    'chat_id'    => $this->chatId,
+                    'text'       => $messagePart,
+                    'parse_mode' => 'HTML',
+                ])
+            );
+        }
     }
 
     public static function logMessage(
