@@ -79,7 +79,7 @@ class TGLog
     {
         $this->client->sendMessage(
             $this->chatId,
-            $this->mode().' - Message:'.PHP_EOL.$message,
+            '<i>'.$this->mode().' - Message:</i>'.PHP_EOL.$message,
             null,
             'HTML'
         );
