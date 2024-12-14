@@ -31,11 +31,11 @@ class TGLog
     ): self {
         $botToken = $botToken ?? ($_ENV['TG_LOG_BOT_TOKEN'] ?? null);
         if (empty($botToken)) {
-            throw new Exception(__NAMESPACE__.' Bot Token is missing');
+            throw new \RuntimeException(__NAMESPACE__.' Bot Token is missing');
         }
         $chatId = $chatId ?? ($_ENV['TG_LOG_CHAT_ID'] ?? null);
         if (empty($chatId)) {
-            throw new Exception(__NAMESPACE__.' Chat ID is missing');
+            throw new \RuntimeException(__NAMESPACE__.' Chat ID is missing');
         }
         $staticSelfKey = $botToken.'_'.$chatId;
 
@@ -80,6 +80,8 @@ class TGLog
         $this->client->sendMessage(
             $this->chatId,
             $this->mode().' - Message:'.PHP_EOL.$message,
+            null,
+            'HTML'
         );
     }
 
