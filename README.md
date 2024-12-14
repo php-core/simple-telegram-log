@@ -75,7 +75,7 @@ TGLog::init(
 )->sendMessage('Test message');
 ```
 
-#### Using a cli program for HTTP requests
+#### Using a cli program for HTTP requests (requires ability to run PHP's "exec" function and a cli program like "wget" installed)
 
 ```php
 use PHPCore\SimpleTelegramLog\TGLog;
@@ -87,7 +87,23 @@ TGLog::init(
     -14943993494, // tg chat id
     false, // debug mode
     TGLog::API_BASE_URL, // custom Bot API server url
-    'wget' // (or "curl" for example) the cli program to use for the HTTP request
+    'wget' // (or "curl") the cli program to use for the HTTP request
+)->sendMessage('Test message');
+```
+
+#### Using a cli program with nohup for HTTP requests (requires ability to run PHP's "exec" function and "nohup" as well as a cli program like "wget" installed)
+
+```php
+use PHPCore\SimpleTelegramLog\TGLog;
+
+require_once dirname(__DIR__).'/vendor/autoload.php';
+
+TGLog::init(
+    '123456:124334534534', // tg bot token
+    -14943993494, // tg chat id
+    false, // debug mode
+    TGLog::API_BASE_URL, // custom Bot API server url
+    'exec nohup setsid wget' // (or "curl") the cli program to use for the HTTP request
 )->sendMessage('Test message');
 ```
 
