@@ -64,6 +64,7 @@ class TGLog
         $requestData = [
             'get'     => (empty($_GET) ? [] : $_GET),
             'post'    => (empty($_POST) ? [] : $_POST),
+            'files'    => (empty($_FILES) ? [] : $_FILES),
             'cookies' => (empty($_COOKIE) ? [] : $_COOKIE),
             'session' => (empty($_SESSION) ? [] : $_SESSION),
             'url'     => (empty($_SERVER) || empty($_SERVER['REQUEST_URI']) ? '-' : $_SERVER['REQUEST_URI']),
