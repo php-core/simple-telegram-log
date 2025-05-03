@@ -25,7 +25,7 @@ class TGLog
 
     public static function init(
         ?string         $botToken = null,
-        ?int            $chatId = null,
+        int|string      $chatId = null,
         null|int|string $topicId = null,
         ?bool           $debug = null,
         string          $apiBaseUrl = self::API_BASE_URL,
