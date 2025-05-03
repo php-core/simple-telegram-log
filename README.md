@@ -29,6 +29,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 TGLog::init(
     '123456:124334534534', // tg bot token
     -14943993494, // tg chat id
+    null, // tg channel topic id
     false // debug mode
 )->sendMessage('Test message');
 ```
@@ -70,6 +71,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 TGLog::init(
     '123456:124334534534', // tg bot token
     -14943993494, // tg chat id
+    null, // tg channel topic id
     false, // debug mode
     'https://tg-bot-api.php-core.com' // custom Bot API server url
 )->sendMessage('Test message');
@@ -85,6 +87,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 TGLog::init(
     '123456:124334534534', // tg bot token
     -14943993494, // tg chat id
+    null, // tg channel topic id
     false, // debug mode
     TGLog::API_BASE_URL, // custom Bot API server url
     'wget' // (or "curl") the cli program to use for the HTTP request
@@ -101,6 +104,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 TGLog::init(
     '123456:124334534534', // tg bot token
     -14943993494, // tg chat id
+    null, // tg channel topic id
     false, // debug mode
     TGLog::API_BASE_URL, // custom Bot API server url
     'exec nohup setsid wget' // (or "curl") the cli program to use for the HTTP request
@@ -114,5 +118,6 @@ TGLog::init(
 | DEBUG                 | false                    | "true" or "false" enables or disables debug mode                                              |
 | TG_LOG_BOT_TOKEN      | x                        | The default bot token to use for sending log messages                                         |
 | TG_LOG_CHAT_ID        | x                        | The default chat ID to send log messages to                                                   |
+| TG_LOG_TOPIC_ID       | x                        | The default channel topic ID to send log messages to                                          |
 | TG_LOG_BOT_SERVER_URL | https://api.telegram.org | The base URL of the Bot API to use                                                            |
 | TG_LOG_BOT_HTTP_CMD   | x                        | Optional cli program to use in PHP's "exec" function for HTTP requests (e.g "curl" or "wget") |
