@@ -25,7 +25,7 @@ class TGLog
 
     public static function init(
         ?string         $botToken = null,
-        int|string      $chatId = null,
+        null|int|string      $chatId = null,
         null|int|string $topicId = null,
         ?bool           $debug = null,
         string          $apiBaseUrl = self::API_BASE_URL,
@@ -128,7 +128,7 @@ class TGLog
                 $this->getApiBaseUrl() . '/bot' . $this->botToken . '/sendMessage?'
                 . http_build_query(array_merge(
                     [
-                        'chat_id' => $this->chatId . empty($this->topicId) ? '' : '_' . $this->topicId,
+                        'chat_id' => $this->chatId . (empty($this->topicId) ? '' : '_' . $this->topicId),
                         'text' => $messagePart,
                         'parse_mode' => 'HTML',
                     ],
