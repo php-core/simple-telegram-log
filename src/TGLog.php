@@ -25,7 +25,7 @@ class TGLog
 
     public static function init(
         ?string         $botToken = null,
-        null|int|string      $chatId = null,
+        null|int|string $chatId = null,
         null|int|string $topicId = null,
         ?bool           $debug = null,
         string          $apiBaseUrl = self::API_BASE_URL,
@@ -39,6 +39,9 @@ class TGLog
         $chatId = $chatId ?? ($_ENV['TG_LOG_CHAT_ID'] ?? null);
         if (empty($chatId)) {
             throw new \RuntimeException(__NAMESPACE__ . ' Chat ID is missing');
+        }
+        if (empty($topicId = $topicId ?? ($_ENV['TG_LOG_TOPIC_ID'] ?? null))) {
+            $topicId = null;
         }
         $staticSelfKey = $botToken . '_' . $chatId;
 
